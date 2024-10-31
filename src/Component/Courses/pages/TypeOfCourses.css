@@ -1,0 +1,146 @@
+* {
+    font-family: auto;
+}
+a {
+    color: #ffffff;
+    text-decoration: none;
+    
+}
+.twotypes {
+    display: flex;
+    align-items: center;
+    background-color: #e0f7fa;
+    padding: 0px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-direction: row;
+}
+
+.twotypes.reverse {
+    flex-direction: row-reverse;
+}
+
+.typesimages {
+    width: auto;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.typestext-content {
+    flex-grow: 1;
+    padding-right: 10px;
+    padding-left: 20px;
+}
+
+h2 {
+    color: #00796b;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.viewbtn {
+    padding: 10px 20px;
+    background-color: #00796b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 80px;
+    height: 40px;
+}
+
+.viewbtn:hover {
+    background-color: #004d40;
+}
+
+.undercourses {
+    margin-top: 200px;
+}
+
+.line {
+    border: none;
+    border-top: 3px solid #2A3D71; 
+    margin: 40px 0; 
+    width: 50%;
+    align-self: center;
+    margin: 40px auto;
+}
+.Technicalcourses {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000000;
+    margin-top: 20px;
+}
+.FiberOptics {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: stretch; 
+    background-color: #E3E6DD;
+    margin-bottom: 30px;
+}
+
+.fiberinfo {
+    flex: 1; 
+    margin-right: 20px; 
+}
+
+.fiberimg {
+    flex: 0 0 auto; 
+    max-width: 45%; 
+}
+
+.fiberimg img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover;
+}
+    
+
+.fibertitle {
+    color: black;
+    margin-top: 20px;
+}
+.fiberdis {
+    margin-left: 5px;
+}
+
+.fiberdeal {
+    display: flex;         
+    align-items: center;    
+    gap: 15px;
+}
+.fibertrainer , .fiberprice {
+    text-align: center;
+
+}
+
+.fibertrainername , .fibertheprice , .fiberbuy {
+    background-color: #825D23;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+.fibertrainername, .fibertheprice {
+    width: fit-content;
+    display: block;
+    margin-top: 2px;
+}
+
+.fiberbuy {
+    border: none;
+    cursor: pointer;
+    width: 140px;
+    
+}
