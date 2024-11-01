@@ -4,7 +4,8 @@ import NavBar from './Component/NavBar/NavBar';
 import Home from './Home'
 import Login from './Component/Login/Login'
 import Signup from './Component/Signup/Signup'
-// import ProfileForm from './Component/ProfileForm/ProfileForm';
+import ProfileForm from './Component/ProfileForm/ProfileForm';
+
 
 import { BrowserRouter as Router , Route , Routes } from 'react-router-dom';
 function App() {
@@ -17,7 +18,8 @@ function App() {
     <Route path='/Courses' element={<TypeOfCourses />}/>
     <Route path='/Logout' element={<Login />}/>
     <Route path='/Signup' element={<Signup/>}/>
-    {/* <Route path='/aboali' element={<ProfileForm />}/> */}
+    <Route path='/Profile' element={<ProfileForm/>}/>
+
 
    </Routes>
   

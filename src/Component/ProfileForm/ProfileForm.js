@@ -14,7 +14,7 @@ const ProfileForm = ({ handleRoleChange, onSubmit }) => {
   const [dob, setDob] = useState('');
   const [role, setRole] = useState('');
   const [image, setImage] = useState(null);
-  const [message, setMessage] = useState(''); // لتخزين رسالة الطالب
+  const [message, setMessage] = useState(''); 
 
   const handleFirstNameChange = (e) => setFirstName(e.target.value);
   const handleLastNameChange = (e) => setLastName(e.target.value);
@@ -24,7 +24,7 @@ const ProfileForm = ({ handleRoleChange, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (role) {
-      onSubmit(role); // تمرير الدور إلى الدالة في App
+      onSubmit(role);
     } else {
       setMessage('Please select a role');
     }
@@ -36,70 +36,70 @@ const ProfileForm = ({ handleRoleChange, onSubmit }) => {
         {image ? (
           <img src={image} alt="Profile" />
         ) : (
-          <div className="placeholder">
+          <div className="placehold">
             <span className="initial">{getInitial(firstName)}</span>
           </div>
         )}
-        <p>{firstName} {lastName}</p>
+        <p className='yourname'>{firstName} {lastName}</p>
         <input type="file" onChange={handleImageUpload} />
       </div>
 
       <form onSubmit={handleSubmit} className="form-fields">
         <div>
           <label className="label">First name</label>
-          <input type="text" value={firstName} onChange={handleFirstNameChange} required />
+          <input className='theform' type="text" value={firstName} onChange={handleFirstNameChange} required />
         </div>
         <div>
           <label className="label">Last name</label>
-          <input type="text" value={lastName} onChange={handleLastNameChange} required />
+          <input className='theform' type="text" value={lastName} onChange={handleLastNameChange} required />
         </div>
         <div>
           <label className="label">Phone Number</label>
-          <input type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required />
+          <input className='theform' type="text" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required />
         </div>
         <div>
           <label className="label">User name</label>
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
+          <input className='theform' type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
         </div>
         <div>
           <label className="label">Email</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input className='theform' type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </div>
         <div>
           <label className="label">Gender</label>
-          <input type="text" value={gender} onChange={(e) => setGender(e.target.value)} required />
+          <input className='theform' type="text" value={gender} onChange={(e) => setGender(e.target.value)} required />
         </div>
         <div>
           <label className="label">City</label>
-          <input type="text" value={city} onChange={(e) => setCity(e.target.value)} required />
+          <input className='theform' type="text" value={city} onChange={(e) => setCity(e.target.value)} required />
         </div>
         <div>
           <label className="label">Education level</label>
-          <input type="text" value={educationLevel} onChange={(e) => setEducationLevel(e.target.value)} required />
+          <input className='theform' type="text" value={educationLevel} onChange={(e) => setEducationLevel(e.target.value)} required />
         </div>
         <div>
           <label className="label">Language</label>
-          <input type="text" value={language} onChange={(e) => setLanguage(e.target.value)} required />
+          <input className='theform' type="text" value={language} onChange={(e) => setLanguage(e.target.value)} required />
         </div>
         <div>
           <label className="label">Date of birth</label>
-          <input type="date" value={dob} onChange={(e) => setDob(e.target.value)} required />
+          <input className='theform' type="date" value={dob} onChange={(e) => setDob(e.target.value)} required />
         </div>
         <div>
           <label className="label">Student or Trainer</label>
-          <select value={role} onChange={(e) => { 
+          <select className='theform' value={role} onChange={(e) => { 
               setRole(e.target.value); 
-              handleRoleChange(e); // تحديث الدور في المكون الأب
+              handleRoleChange(e);
           }} required>
             <option value="">Select</option>
             <option value="Student">Student</option>
             <option value="Trainer">Trainer</option>
           </select>
         </div>
-        <button type="submit">Submit</button>
+        <button className='subinfo' type="submit">Submit</button>
       </form>
 
-      {/* عرض رسالة الطالب إذا كان الدور هو "Student" */}
+      {}
       {message && <div className="success-message">{message}</div>}
     </div>
   );

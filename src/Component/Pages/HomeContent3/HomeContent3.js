@@ -1,7 +1,7 @@
 import React from 'react'
 import './HomeContent3.css'
 const HomeContent3 = () => {
-  return (
+    return (
     <div className="cards-section">
         <div className="card">
             <img  src="/images/Technical.png" alt="Icon 1" className="card-icon"/>
@@ -20,7 +20,7 @@ const HomeContent3 = () => {
             <p>Digital Marketing </p>
         </div>
     </div>
-  )
+    )
 }
 
 export default HomeContent3

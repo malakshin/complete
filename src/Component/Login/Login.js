@@ -72,7 +72,7 @@ const Login = () => {
             </div>
             <div className="image-section">
                 <div className="placeholder">
-                    <img src="../Future.png" alt="Description" />
+                    <img src="/images/future.png" alt="Description" />
                 </div>
             </div>
         </div>
@@ -80,4 +80,3 @@ const Login = () => {
 };
 
 export default Login;
-  
