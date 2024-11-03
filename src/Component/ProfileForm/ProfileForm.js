@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ProfileForm.css';
+import axios from 'axios';
 
 const ProfileForm = ({ handleRoleChange, onSubmit }) => {
   const [firstName, setFirstName] = useState('');
@@ -14,7 +15,9 @@ const ProfileForm = ({ handleRoleChange, onSubmit }) => {
   const [dob, setDob] = useState('');
   const [role, setRole] = useState('');
   const [image, setImage] = useState(null);
-  const [message, setMessage] = useState(''); 
+  const [message, setMessage] = useState('');
+  const [password, setPassword] = useState(''); // إضافة حالة كلمة المرور
+  const [confirmPassword, setConfirmPassword] = useState(''); // إضافة حالة تأكيد كلمة المرور
 
   const handleFirstNameChange = (e) => setFirstName(e.target.value);
   const handleLastNameChange = (e) => setLastName(e.target.value);
@@ -23,11 +26,69 @@ const ProfileForm = ({ handleRoleChange, onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      setMessage('Passwords do not match'); // رسالة عند عدم تطابق كلمتي المرور
+      return;
+    }
     if (role) {
       onSubmit(role);
+      // تفريغ الحقول بعد الإرسال
+      setFirstName('');
+      setLastName('');
+      setPhoneNumber('');
+      setUsername('');
+      setEmail('');
+      setGender('');
+      setCity('');
+      setEducationLevel('');
+      setLanguage('');
+      setDob('');
+      setRole('');
+      setImage(null);
+      setPassword(''); // تفريغ حقل كلمة المرور
+      setConfirmPassword(''); // تفريغ حقل تأكيد كلمة المرور
+      setMessage('Profile updated successfully!'); // رسالة النجاح
     } else {
       setMessage('Please select a role');
     }
+  };
+
+  useEffect(() => {
+    axios.get('/api/profile')
+      .then((response) => {
+        const data = response.data;
+        setFirstName(data.firstName);
+        setLastName(data.lastName);
+        setPhoneNumber(data.phoneNumber);
+        setUsername(data.username);
+        setEmail(data.email);
+        setGender(data.gender);
+        setCity(data.city);
+        setEducationLevel(data.educationLevel);
+        setLanguage(data.language);
+        setDob(data.dob);
+        setRole(data.role);
+      })
+      .catch((error) => {
+        console.error('Error fetching profile data:', error);
+      });
+  }, []);
+
+  // تحديث الخادم عند تغيير حقل معين
+  const handleFieldChange = (field, value) => {
+    // تحديث الحالة المحلية
+    switch (field) {
+      case 'gender': setGender(value); break;
+      case 'city': setCity(value); break;
+      case 'educationLevel': setEducationLevel(value); break;
+      case 'language': setLanguage(value); break;
+      default: break;
+    }
+    // إرسال التحديث للخادم
+    axios.put('/api/profile', { [field]: value })
+      .catch((error) => {
+        console.error(`Error updating ${field}:`, error);
+      });
   };
 
   return (
@@ -66,20 +127,50 @@ const ProfileForm = ({ handleRoleChange, onSubmit }) => {
           <input className='theform' type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         </div>
         <div>
-          <label className="label">Gender</label>
-          <input className='theform' type="text" value={gender} onChange={(e) => setGender(e.target.value)} required />
+          <label className="label">Password</label>
+          <input className='theform' type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </div>
         <div>
-          <label className="label">City</label>
-          <input className='theform' type="text" value={city} onChange={(e) => setCity(e.target.value)} required />
+          <label className="label">Confirm Password</label>
+          <input className='theform' type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
         </div>
         <div>
-          <label className="label">Education level</label>
-          <input className='theform' type="text" value={educationLevel} onChange={(e) => setEducationLevel(e.target.value)} required />
+          <label className='label'>Gender</label>
+          <select className='theform' value={gender} onChange={(e) => handleFieldChange('gender', e.target.value)} required>
+            <option value="" disabled>Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
         </div>
         <div>
-          <label className="label">Language</label>
-          <input className='theform' type="text" value={language} onChange={(e) => setLanguage(e.target.value)} required />
+          <label className='label'>City</label>
+          <select className='theform' value={city} onChange={(e) => handleFieldChange('city', e.target.value)} required>
+            <option value="" disabled>City</option>
+            <option value="Iraq">Iraq</option>
+            <option value="Egypt">Egypt</option>
+            <option value="Lebanon">Lebanon</option>
+            <option value="Morocco">Morocco</option>
+          </select>
+        </div>
+        <div>
+          <label className='label'>Education Level</label>
+          <select className='theform' value={educationLevel} onChange={(e) => handleFieldChange('educationLevel', e.target.value)} required>
+            <option value="" disabled>Education Level</option>
+            <option value="high-school">High School</option>
+            <option value="bachelor">Bachelor's Degree</option>
+            <option value="master">Master's Degree</option>
+            <option value="phd">PhD</option>
+          </select>
+        </div>
+        <div>
+          <label className='label'>Language</label>
+          <select className='theform' value={language} onChange={(e) => handleFieldChange('language', e.target.value)} required>
+            <option value="" disabled>Language</option>
+            <option value="english">English</option>
+            <option value="arabic">Arabic</option>
+            <option value="french">French</option>
+            <option value="spanish">Spanish</option>
+          </select>
         </div>
         <div>
           <label className="label">Date of birth</label>
@@ -99,7 +190,6 @@ const ProfileForm = ({ handleRoleChange, onSubmit }) => {
         <button className='subinfo' type="submit">Submit</button>
       </form>
 
-      {}
       {message && <div className="success-message">{message}</div>}
     </div>
   );

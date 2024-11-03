@@ -39,7 +39,7 @@ body {
     margin-top: 30px;
 }
 
-.btnplace button {
+.new , .old {
     flex: 0 0 242px;
     font: 400 24px Actor, sans-serif;
     color: white;

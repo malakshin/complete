@@ -53,7 +53,7 @@ const Signup = () => {
       <input type="date" class="form-input" placeholder="Date of Birth" required />
       </div>
       </div>
-          <button type="submit">Submit</button>
+          <button className='submitbtn' type="submit">Submit</button>
         </form>
       </div>
       <div className="image-section">
